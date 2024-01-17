@@ -1,0 +1,1 @@
+# sfu-coop-latex-template
