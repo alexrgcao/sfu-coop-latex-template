@@ -1,24 +1,23 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{my_cv}[2022/02/01 My custom CV class]
 
-\LoadClass{article} % Base this class on the standard 'article' class
+\LoadClass[11pt]{article} % Base this class on the standard 'article' class
+
+\pagestyle{empty}
 
 \RequirePackage{geometry}
 \RequirePackage{xcolor} % Add this line at the top of your .cls file
 \usepackage{afterpage}
 \usepackage{fancyhdr}
-\usepackage{enumitem}
+\usepackage[inline]{enumitem}
 \usepackage{fontspec}
 
 \setmainfont[
-  BoldFont={MonaspaceNeon-Bold.otf}, 
-  ItalicFont={MonaspaceNeon-Italic.otf},
-  BoldItalicFont={MonaspaceNeon-BoldItalic.otf}
-]{MonaspaceNeon-Regular.otf}
+  BoldFont={HarmonyOS_Sans_Bold.ttf}, 
+]{HarmonyOS_Sans_Regular.ttf}
 
-\newfontfamily\extraboldfont{MonaspaceNeon-ExtraBold.otf}
-\newfontfamily\extrabolditalicfont{MonaspaceNeon-ExtraBoldItalic.otf}
-\newfontfamily\mediumfont{MonaspaceNeon-Medium.otf}
+\newfontfamily\extraboldfont{HarmonyOS_Sans_Black.ttf}
+\newfontfamily\mediumfont{HarmonyOS_Sans_Medium.ttf}
 
 
 \geometry{a4paper, margin=0.5in} % Set page geometry
@@ -49,15 +48,15 @@
 \newcommand{\gradientline}[1]{
   \noindent\begin{tikzpicture}
     \shade[left color=color1, right color=color2, rounded corners=2pt] (0,-0.1) rectangle (\linewidth,0.5pt);
-    \node[align=left, fill=white, inner sep=3pt, outer sep=24pt, anchor=west] at (0\linewidth,0pt) {\fontsize{16pt}{19.2pt}\selectfont\textbf{\textcolor{sectioncolour}{#1}}};
+    \node[align=left, fill=white, inner sep=3pt, outer sep=24pt, anchor=west, text depth=-1ex] at (0\linewidth,0pt) {\fontsize{16pt}{19.2pt}\selectfont\textbf{\textcolor{sectioncolour}{#1}}};
   \end{tikzpicture}
 }
 
 % Define a new command for education entries
 \newcommand{\education}[6][]{
   \item \textbf{#2} \hfill \textbf{#3 -- #4} \\
-  Major: #5 \\
-  \if\relax\detokenize{#1}\relax\else Minor: #1 \\\fi
+  \if\relax\detokenize{#1}\relax\else \textbf{Minor: #1} \\\fi
+  #5 \\
   Location: #6
 }
 
@@ -66,7 +65,6 @@
   \item \textbf{#1:} #2
 }
 \RequirePackage{etoolbox} 
-
 
 % Define a new command for project entries
 \newcommand{\academic}[7][]{
